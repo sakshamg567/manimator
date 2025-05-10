@@ -1,0 +1,1032 @@
+2025-05-10 23:27:25,576 - INFO - Started server process [140006]
+2025-05-10 23:27:25,577 - INFO - Waiting for application startup.
+2025-05-10 23:27:25,578 - INFO - Application startup complete.
+2025-05-10 23:27:47,134 - INFO - Request e419e0fd-e1a6-4913-a06a-05f88e0c89d7 started - POST /generate-video
+2025-05-10 23:27:47,135 - INFO - [90f52614] Starting Manim video generation
+2025-05-10 23:27:47,136 - INFO - [90f52614] Received Manim code: 1. Create a Circle object, centered on the screen.
+2. Create a Square object, centered on the screen and with a height equal to the circle's diameter.
+3. Display the Circle on the screen.
+4. Animate t...
+2025-05-10 23:27:47,136 - ERROR - [90f52614] Syntax Error: unterminated string literal (detected at line 2) (<unknown>, line 2) at line 2, column 88
+2025-05-10 23:27:47,136 - ERROR - [90f52614] HTTP exception occurred
+Traceback (most recent call last):
+  File "/home/saksham/dev/text-to-manim/manim-service/server.py", line 89, in run_manim
+    ast.parse(data.manim_code)
+  File "/usr/lib/python3.12/ast.py", line 52, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<unknown>", line 2
+    2. Create a Square object, centered on the screen and with a height equal to the circle's diameter.
+                                                                                           ^
+SyntaxError: unterminated string literal (detected at line 2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/saksham/dev/text-to-manim/manim-service/server.py", line 93, in run_manim
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: Syntax Error: unterminated string literal (detected at line 2) (<unknown>, line 2) at line 2, column 88
+2025-05-10 23:27:47,139 - INFO - Response e419e0fd-e1a6-4913-a06a-05f88e0c89d7 completed with status 400 in 0.0050s
+2025-05-10 23:28:40,609 - INFO - Request 329b674f-f036-40c6-a634-8ebd0b717101 started - POST /generate-video
+2025-05-10 23:28:40,609 - INFO - [3981f11b] Starting Manim video generation
+2025-05-10 23:28:40,610 - INFO - [3981f11b] Received Manim code: 
+from manim import *
+
+class DefaultScene(Scene):
+   def construct(self):
+      # Create a circle and a square
+      circle = Circle(color=RED)
+      square = Square(color=BLUE)
+      
+      # Position...
+2025-05-10 23:28:40,611 - INFO - [3981f11b] Created temp directory: /tmp/manim_3981f11b_5d8gpec8
+2025-05-10 23:28:40,612 - INFO - [3981f11b] Executing Manim command
+2025-05-10 23:28:50,580 - INFO - [3981f11b] Manim execution completed successfully
+2025-05-10 23:28:50,581 - INFO - [3981f11b] Found video at /tmp/manim_3981f11b_5d8gpec8/media/videos/main/480p15/DefaultScene.mp4
+2025-05-10 23:28:50,582 - INFO - [3981f11b] Copied video to /tmp/3981f11b_DefaultScene.mp4
+2025-05-10 23:28:50,582 - INFO - [3981f11b] Returning video response
+2025-05-10 23:28:50,583 - INFO - Response 329b674f-f036-40c6-a634-8ebd0b717101 completed with status 200 in 9.9747s
+2025-05-10 23:29:28,711 - INFO - Request a6a9515c-01de-4e5c-be90-a0b35431f77f started - POST /generate-video
+2025-05-10 23:29:28,712 - INFO - [11afdf9e] Starting Manim video generation
+2025-05-10 23:29:28,712 - INFO - [11afdf9e] Received Manim code: 
+from manim import *
+
+class DefaultScene(Scene):
+   def construct(self):
+      # Create a circle and a square
+      circle = Circle(color=RED)
+      square = Square(color=BLUE)
+      
+      # Position...
+2025-05-10 23:29:28,712 - INFO - [11afdf9e] Created temp directory: /tmp/manim_11afdf9e_7gy_hwvq
+2025-05-10 23:29:28,713 - INFO - [11afdf9e] Executing Manim command
+2025-05-10 23:29:33,548 - INFO - [11afdf9e] Manim execution completed successfully
+2025-05-10 23:29:33,548 - INFO - [11afdf9e] Found video at /tmp/manim_11afdf9e_7gy_hwvq/media/videos/main/480p15/DefaultScene.mp4
+2025-05-10 23:29:33,549 - INFO - [11afdf9e] Copied video to /tmp/11afdf9e_DefaultScene.mp4
+2025-05-10 23:29:33,549 - INFO - [11afdf9e] Returning video response
+2025-05-10 23:29:33,550 - INFO - Response a6a9515c-01de-4e5c-be90-a0b35431f77f completed with status 200 in 4.8386s
+2025-05-10 23:31:12,341 - INFO - Shutting down
+2025-05-10 23:31:12,443 - INFO - Waiting for application shutdown.
+2025-05-10 23:31:12,443 - INFO - Application shutdown complete.
+2025-05-10 23:31:12,444 - INFO - Finished server process [140006]
+2025-05-10 23:31:16,011 - INFO - Will watch for changes in these directories: ['/home/saksham/dev/text-to-manim/manim-service']
+2025-05-10 23:31:16,013 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-05-10 23:31:16,014 - INFO - Started reloader process [167820] using WatchFiles
+2025-05-10 23:31:16,656 - INFO - Started server process [167822]
+2025-05-10 23:31:16,659 - INFO - Waiting for application startup.
+2025-05-10 23:31:16,661 - INFO - Application startup complete.
+2025-05-10 23:31:16,724 - INFO - 1 change detected
+2025-05-10 23:31:17,075 - INFO - 1 change detected
+2025-05-10 23:31:17,425 - INFO - 1 change detected
+2025-05-10 23:31:17,776 - INFO - 1 change detected
+2025-05-10 23:31:18,127 - INFO - 1 change detected
+2025-05-10 23:31:18,478 - INFO - 1 change detected
+2025-05-10 23:31:18,829 - INFO - 1 change detected
+2025-05-10 23:31:19,179 - INFO - 1 change detected
+2025-05-10 23:31:19,530 - INFO - 1 change detected
+2025-05-10 23:31:19,881 - INFO - 1 change detected
+2025-05-10 23:31:20,232 - INFO - 1 change detected
+2025-05-10 23:31:20,587 - INFO - 1 change detected
+2025-05-10 23:31:20,938 - INFO - 1 change detected
+2025-05-10 23:31:21,294 - INFO - 1 change detected
+2025-05-10 23:31:21,647 - INFO - 1 change detected
+2025-05-10 23:31:21,998 - INFO - 1 change detected
+2025-05-10 23:31:22,349 - INFO - 1 change detected
+2025-05-10 23:31:22,699 - INFO - 1 change detected
+2025-05-10 23:31:23,050 - INFO - 1 change detected
+2025-05-10 23:31:23,401 - INFO - 1 change detected
+2025-05-10 23:31:23,752 - INFO - 1 change detected
+2025-05-10 23:31:24,104 - INFO - 1 change detected
+2025-05-10 23:31:24,455 - INFO - 1 change detected
+2025-05-10 23:31:24,805 - INFO - 1 change detected
+2025-05-10 23:31:25,157 - INFO - 1 change detected
+2025-05-10 23:31:25,508 - INFO - 1 change detected
+2025-05-10 23:31:25,859 - INFO - 1 change detected
+2025-05-10 23:31:26,210 - INFO - 1 change detected
+2025-05-10 23:31:26,561 - INFO - 1 change detected
+2025-05-10 23:31:26,912 - INFO - 1 change detected
+2025-05-10 23:31:27,263 - INFO - 1 change detected
+2025-05-10 23:31:27,614 - INFO - 1 change detected
+2025-05-10 23:31:27,966 - INFO - 1 change detected
+2025-05-10 23:31:28,317 - INFO - 1 change detected
+2025-05-10 23:31:28,668 - INFO - 1 change detected
+2025-05-10 23:31:29,018 - INFO - 1 change detected
+2025-05-10 23:31:29,369 - INFO - 1 change detected
+2025-05-10 23:31:29,719 - INFO - 1 change detected
+2025-05-10 23:31:30,070 - INFO - 1 change detected
+2025-05-10 23:31:30,421 - INFO - 1 change detected
+2025-05-10 23:31:30,771 - INFO - 1 change detected
+2025-05-10 23:31:31,123 - INFO - 1 change detected
+2025-05-10 23:31:31,473 - INFO - 1 change detected
+2025-05-10 23:31:31,824 - INFO - 1 change detected
+2025-05-10 23:31:32,175 - INFO - 1 change detected
+2025-05-10 23:31:32,526 - INFO - 1 change detected
+2025-05-10 23:31:32,877 - INFO - 1 change detected
+2025-05-10 23:31:33,228 - INFO - 1 change detected
+2025-05-10 23:31:33,579 - INFO - 1 change detected
+2025-05-10 23:31:33,930 - INFO - 1 change detected
+2025-05-10 23:31:34,282 - INFO - 1 change detected
+2025-05-10 23:31:34,632 - INFO - 1 change detected
+2025-05-10 23:31:34,984 - INFO - 1 change detected
+2025-05-10 23:31:35,334 - INFO - 1 change detected
+2025-05-10 23:31:35,685 - INFO - 1 change detected
+2025-05-10 23:31:35,849 - INFO - Shutting down
+2025-05-10 23:31:35,951 - INFO - Waiting for application shutdown.
+2025-05-10 23:31:35,952 - INFO - Application shutdown complete.
+2025-05-10 23:31:35,952 - INFO - Finished server process [167822]
+2025-05-10 23:31:35,957 - INFO - Stopping reloader process [167820]
+2025-05-10 23:31:38,131 - INFO - Will watch for changes in these directories: ['/home/saksham/dev/text-to-manim/manim-service']
+2025-05-10 23:31:38,133 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-05-10 23:31:38,134 - INFO - Started reloader process [170798] using WatchFiles
+2025-05-10 23:31:38,732 - INFO - Started server process [170888]
+2025-05-10 23:31:38,734 - INFO - Waiting for application startup.
+2025-05-10 23:31:38,735 - INFO - Application startup complete.
+2025-05-10 23:31:38,817 - INFO - 1 change detected
+2025-05-10 23:31:39,168 - INFO - 1 change detected
+2025-05-10 23:31:39,520 - INFO - 1 change detected
+2025-05-10 23:31:39,871 - INFO - 1 change detected
+2025-05-10 23:31:40,222 - INFO - 1 change detected
+2025-05-10 23:31:40,573 - INFO - 1 change detected
+2025-05-10 23:31:40,924 - INFO - 1 change detected
+2025-05-10 23:31:41,274 - INFO - 1 change detected
+2025-05-10 23:31:41,625 - INFO - 1 change detected
+2025-05-10 23:31:41,975 - INFO - 1 change detected
+2025-05-10 23:31:42,327 - INFO - 1 change detected
+2025-05-10 23:31:42,678 - INFO - 1 change detected
+2025-05-10 23:31:43,029 - INFO - 1 change detected
+2025-05-10 23:31:43,379 - INFO - 1 change detected
+2025-05-10 23:31:43,730 - INFO - 1 change detected
+2025-05-10 23:31:44,080 - INFO - 1 change detected
+2025-05-10 23:31:44,431 - INFO - 1 change detected
+2025-05-10 23:31:44,782 - INFO - 1 change detected
+2025-05-10 23:31:45,134 - INFO - 1 change detected
+2025-05-10 23:31:45,485 - INFO - 1 change detected
+2025-05-10 23:31:45,836 - INFO - 1 change detected
+2025-05-10 23:31:46,187 - INFO - 1 change detected
+2025-05-10 23:31:46,538 - INFO - 1 change detected
+2025-05-10 23:31:46,888 - INFO - 1 change detected
+2025-05-10 23:31:47,248 - INFO - 1 change detected
+2025-05-10 23:31:47,598 - INFO - 1 change detected
+2025-05-10 23:31:47,952 - INFO - 1 change detected
+2025-05-10 23:31:48,302 - INFO - 1 change detected
+2025-05-10 23:31:48,653 - INFO - 1 change detected
+2025-05-10 23:31:49,004 - INFO - 1 change detected
+2025-05-10 23:31:49,355 - INFO - 1 change detected
+2025-05-10 23:31:49,706 - INFO - 1 change detected
+2025-05-10 23:31:50,056 - INFO - 1 change detected
+2025-05-10 23:31:50,407 - INFO - 1 change detected
+2025-05-10 23:31:50,759 - INFO - 1 change detected
+2025-05-10 23:31:51,110 - INFO - 1 change detected
+2025-05-10 23:31:51,462 - INFO - 1 change detected
+2025-05-10 23:31:51,813 - INFO - 1 change detected
+2025-05-10 23:31:52,165 - INFO - 1 change detected
+2025-05-10 23:31:52,516 - INFO - 1 change detected
+2025-05-10 23:31:52,866 - INFO - 1 change detected
+2025-05-10 23:31:53,217 - INFO - 1 change detected
+2025-05-10 23:31:53,568 - INFO - 1 change detected
+2025-05-10 23:31:53,918 - INFO - 1 change detected
+2025-05-10 23:31:54,269 - INFO - 1 change detected
+2025-05-10 23:31:54,620 - INFO - 1 change detected
+2025-05-10 23:31:54,971 - INFO - 1 change detected
+2025-05-10 23:31:55,321 - INFO - 1 change detected
+2025-05-10 23:31:55,672 - INFO - 1 change detected
+2025-05-10 23:31:56,023 - INFO - 1 change detected
+2025-05-10 23:31:56,374 - INFO - 1 change detected
+2025-05-10 23:31:56,725 - INFO - 1 change detected
+2025-05-10 23:31:57,076 - INFO - 1 change detected
+2025-05-10 23:31:57,427 - INFO - 1 change detected
+2025-05-10 23:31:57,778 - INFO - 1 change detected
+2025-05-10 23:31:58,129 - INFO - 1 change detected
+2025-05-10 23:31:58,481 - INFO - 1 change detected
+2025-05-10 23:31:58,832 - INFO - 1 change detected
+2025-05-10 23:31:59,183 - INFO - 1 change detected
+2025-05-10 23:31:59,546 - INFO - 1 change detected
+2025-05-10 23:31:59,897 - INFO - 1 change detected
+2025-05-10 23:32:00,247 - INFO - 1 change detected
+2025-05-10 23:32:00,598 - INFO - 1 change detected
+2025-05-10 23:32:00,948 - INFO - 1 change detected
+2025-05-10 23:32:01,299 - INFO - 1 change detected
+2025-05-10 23:32:01,650 - INFO - 1 change detected
+2025-05-10 23:32:02,001 - INFO - 1 change detected
+2025-05-10 23:32:02,352 - INFO - 1 change detected
+2025-05-10 23:32:02,703 - INFO - 1 change detected
+2025-05-10 23:32:03,054 - INFO - 1 change detected
+2025-05-10 23:32:03,405 - INFO - 1 change detected
+2025-05-10 23:32:03,756 - INFO - 1 change detected
+2025-05-10 23:32:04,107 - INFO - 1 change detected
+2025-05-10 23:32:04,458 - INFO - 1 change detected
+2025-05-10 23:32:04,809 - INFO - 1 change detected
+2025-05-10 23:32:05,159 - INFO - 1 change detected
+2025-05-10 23:32:05,510 - INFO - 1 change detected
+2025-05-10 23:32:05,861 - INFO - 1 change detected
+2025-05-10 23:32:06,212 - INFO - 1 change detected
+2025-05-10 23:32:06,562 - INFO - 1 change detected
+2025-05-10 23:32:06,913 - INFO - 1 change detected
+2025-05-10 23:32:07,264 - INFO - 1 change detected
+2025-05-10 23:32:07,615 - INFO - 1 change detected
+2025-05-10 23:32:07,966 - INFO - 1 change detected
+2025-05-10 23:32:08,316 - INFO - 1 change detected
+2025-05-10 23:32:08,667 - INFO - 1 change detected
+2025-05-10 23:32:09,017 - INFO - 1 change detected
+2025-05-10 23:32:09,368 - INFO - 1 change detected
+2025-05-10 23:32:09,720 - INFO - 1 change detected
+2025-05-10 23:32:10,071 - INFO - 1 change detected
+2025-05-10 23:32:10,422 - INFO - 1 change detected
+2025-05-10 23:32:10,773 - INFO - 1 change detected
+2025-05-10 23:32:11,124 - INFO - 1 change detected
+2025-05-10 23:32:11,475 - INFO - 1 change detected
+2025-05-10 23:32:11,825 - INFO - 1 change detected
+2025-05-10 23:32:12,176 - INFO - 1 change detected
+2025-05-10 23:32:12,527 - INFO - 1 change detected
+2025-05-10 23:32:12,878 - INFO - 1 change detected
+2025-05-10 23:32:13,229 - INFO - 1 change detected
+2025-05-10 23:32:13,580 - INFO - 1 change detected
+2025-05-10 23:32:13,931 - INFO - 1 change detected
+2025-05-10 23:32:14,283 - INFO - 1 change detected
+2025-05-10 23:32:14,634 - INFO - 1 change detected
+2025-05-10 23:32:14,985 - INFO - 1 change detected
+2025-05-10 23:32:15,336 - INFO - 1 change detected
+2025-05-10 23:32:15,687 - INFO - 1 change detected
+2025-05-10 23:32:16,038 - INFO - 1 change detected
+2025-05-10 23:32:16,390 - INFO - 1 change detected
+2025-05-10 23:32:16,741 - INFO - 1 change detected
+2025-05-10 23:32:17,091 - INFO - 1 change detected
+2025-05-10 23:32:17,442 - INFO - 1 change detected
+2025-05-10 23:32:17,793 - INFO - 1 change detected
+2025-05-10 23:32:18,143 - INFO - 1 change detected
+2025-05-10 23:32:18,494 - INFO - 1 change detected
+2025-05-10 23:32:18,845 - INFO - 1 change detected
+2025-05-10 23:32:19,200 - INFO - 1 change detected
+2025-05-10 23:32:19,550 - INFO - 1 change detected
+2025-05-10 23:32:19,902 - INFO - 1 change detected
+2025-05-10 23:32:20,253 - INFO - 1 change detected
+2025-05-10 23:32:20,604 - INFO - 1 change detected
+2025-05-10 23:32:20,954 - INFO - 1 change detected
+2025-05-10 23:32:21,305 - INFO - 1 change detected
+2025-05-10 23:32:21,656 - INFO - 1 change detected
+2025-05-10 23:32:22,008 - INFO - 1 change detected
+2025-05-10 23:32:22,359 - INFO - 1 change detected
+2025-05-10 23:32:22,711 - INFO - 1 change detected
+2025-05-10 23:32:23,063 - INFO - 1 change detected
+2025-05-10 23:32:23,414 - INFO - 1 change detected
+2025-05-10 23:32:23,764 - INFO - 1 change detected
+2025-05-10 23:32:24,116 - INFO - 1 change detected
+2025-05-10 23:32:24,466 - INFO - 1 change detected
+2025-05-10 23:32:24,817 - INFO - 1 change detected
+2025-05-10 23:32:25,168 - INFO - 1 change detected
+2025-05-10 23:32:25,519 - INFO - 1 change detected
+2025-05-10 23:32:25,869 - INFO - 1 change detected
+2025-05-10 23:32:26,220 - INFO - 1 change detected
+2025-05-10 23:32:26,571 - INFO - 1 change detected
+2025-05-10 23:32:26,922 - INFO - 1 change detected
+2025-05-10 23:32:27,272 - INFO - 1 change detected
+2025-05-10 23:32:27,626 - INFO - 1 change detected
+2025-05-10 23:32:27,978 - INFO - 1 change detected
+2025-05-10 23:32:28,329 - INFO - 1 change detected
+2025-05-10 23:32:28,680 - INFO - 1 change detected
+2025-05-10 23:32:29,030 - INFO - 1 change detected
+2025-05-10 23:32:29,381 - INFO - 1 change detected
+2025-05-10 23:32:29,732 - INFO - 1 change detected
+2025-05-10 23:32:30,083 - INFO - 1 change detected
+2025-05-10 23:32:30,433 - INFO - 1 change detected
+2025-05-10 23:32:30,784 - INFO - 1 change detected
+2025-05-10 23:32:31,134 - INFO - 1 change detected
+2025-05-10 23:32:31,485 - INFO - 1 change detected
+2025-05-10 23:32:31,836 - INFO - 1 change detected
+2025-05-10 23:32:32,187 - INFO - 1 change detected
+2025-05-10 23:32:32,538 - INFO - 1 change detected
+2025-05-10 23:32:32,889 - INFO - 1 change detected
+2025-05-10 23:32:33,249 - INFO - 1 change detected
+2025-05-10 23:32:33,600 - INFO - 1 change detected
+2025-05-10 23:32:33,951 - INFO - 1 change detected
+2025-05-10 23:32:34,301 - INFO - 1 change detected
+2025-05-10 23:32:34,652 - INFO - 1 change detected
+2025-05-10 23:32:35,003 - INFO - 1 change detected
+2025-05-10 23:32:35,355 - INFO - 1 change detected
+2025-05-10 23:32:35,707 - INFO - 1 change detected
+2025-05-10 23:32:36,057 - INFO - 1 change detected
+2025-05-10 23:32:36,408 - INFO - 1 change detected
+2025-05-10 23:32:36,759 - INFO - 1 change detected
+2025-05-10 23:32:37,110 - INFO - 1 change detected
+2025-05-10 23:32:37,464 - INFO - 1 change detected
+2025-05-10 23:32:37,815 - INFO - 1 change detected
+2025-05-10 23:32:38,165 - INFO - 1 change detected
+2025-05-10 23:32:38,516 - INFO - 1 change detected
+2025-05-10 23:32:38,866 - INFO - 1 change detected
+2025-05-10 23:32:39,217 - INFO - 1 change detected
+2025-05-10 23:32:39,568 - INFO - 1 change detected
+2025-05-10 23:32:39,918 - INFO - 1 change detected
+2025-05-10 23:32:40,269 - INFO - 1 change detected
+2025-05-10 23:32:40,621 - INFO - 1 change detected
+2025-05-10 23:32:40,972 - INFO - 1 change detected
+2025-05-10 23:32:41,323 - INFO - 1 change detected
+2025-05-10 23:32:41,673 - INFO - 1 change detected
+2025-05-10 23:32:42,027 - INFO - 1 change detected
+2025-05-10 23:32:42,379 - INFO - 1 change detected
+2025-05-10 23:32:42,729 - INFO - 1 change detected
+2025-05-10 23:32:43,080 - INFO - 1 change detected
+2025-05-10 23:32:43,432 - INFO - 1 change detected
+2025-05-10 23:32:43,783 - INFO - 1 change detected
+2025-05-10 23:32:44,133 - INFO - 1 change detected
+2025-05-10 23:32:44,484 - INFO - 1 change detected
+2025-05-10 23:32:44,834 - INFO - 1 change detected
+2025-05-10 23:32:45,186 - INFO - 1 change detected
+2025-05-10 23:32:45,536 - INFO - 1 change detected
+2025-05-10 23:32:45,887 - INFO - 1 change detected
+2025-05-10 23:32:46,238 - INFO - 1 change detected
+2025-05-10 23:32:46,589 - INFO - 1 change detected
+2025-05-10 23:32:46,940 - INFO - 1 change detected
+2025-05-10 23:32:47,300 - INFO - 1 change detected
+2025-05-10 23:32:47,652 - INFO - 1 change detected
+2025-05-10 23:32:48,007 - INFO - 1 change detected
+2025-05-10 23:32:48,358 - INFO - 1 change detected
+2025-05-10 23:32:48,708 - INFO - 1 change detected
+2025-05-10 23:32:49,059 - INFO - 1 change detected
+2025-05-10 23:32:49,410 - INFO - 1 change detected
+2025-05-10 23:32:49,761 - INFO - 1 change detected
+2025-05-10 23:32:50,112 - INFO - 1 change detected
+2025-05-10 23:32:50,462 - INFO - 1 change detected
+2025-05-10 23:32:50,813 - INFO - 1 change detected
+2025-05-10 23:32:51,164 - INFO - 1 change detected
+2025-05-10 23:32:51,514 - INFO - 1 change detected
+2025-05-10 23:32:51,865 - INFO - 1 change detected
+2025-05-10 23:32:52,216 - INFO - 1 change detected
+2025-05-10 23:32:52,566 - INFO - 1 change detected
+2025-05-10 23:32:52,917 - INFO - 1 change detected
+2025-05-10 23:32:53,268 - INFO - 1 change detected
+2025-05-10 23:32:53,619 - INFO - 1 change detected
+2025-05-10 23:32:53,970 - INFO - 1 change detected
+2025-05-10 23:32:54,321 - INFO - 1 change detected
+2025-05-10 23:32:54,672 - INFO - 1 change detected
+2025-05-10 23:32:55,023 - INFO - 1 change detected
+2025-05-10 23:32:55,373 - INFO - 1 change detected
+2025-05-10 23:32:55,724 - INFO - 1 change detected
+2025-05-10 23:32:56,076 - INFO - 1 change detected
+2025-05-10 23:32:56,426 - INFO - 1 change detected
+2025-05-10 23:32:56,777 - INFO - 1 change detected
+2025-05-10 23:32:57,130 - INFO - 1 change detected
+2025-05-10 23:32:57,482 - INFO - 1 change detected
+2025-05-10 23:32:57,832 - INFO - 1 change detected
+2025-05-10 23:32:58,183 - INFO - 1 change detected
+2025-05-10 23:32:58,534 - INFO - 1 change detected
+2025-05-10 23:32:58,885 - INFO - 1 change detected
+2025-05-10 23:32:59,236 - INFO - 1 change detected
+2025-05-10 23:32:59,587 - INFO - 1 change detected
+2025-05-10 23:32:59,938 - INFO - 1 change detected
+2025-05-10 23:33:00,289 - INFO - 1 change detected
+2025-05-10 23:33:00,640 - INFO - 1 change detected
+2025-05-10 23:33:00,990 - INFO - 1 change detected
+2025-05-10 23:33:01,342 - INFO - 1 change detected
+2025-05-10 23:33:01,693 - INFO - 1 change detected
+2025-05-10 23:33:02,044 - INFO - 1 change detected
+2025-05-10 23:33:02,394 - INFO - 1 change detected
+2025-05-10 23:33:02,746 - INFO - 1 change detected
+2025-05-10 23:33:03,096 - INFO - 1 change detected
+2025-05-10 23:33:03,449 - INFO - 1 change detected
+2025-05-10 23:33:03,800 - INFO - 1 change detected
+2025-05-10 23:33:04,150 - INFO - 1 change detected
+2025-05-10 23:33:04,501 - INFO - 1 change detected
+2025-05-10 23:33:04,852 - INFO - 1 change detected
+2025-05-10 23:33:05,207 - INFO - 1 change detected
+2025-05-10 23:33:05,558 - INFO - 1 change detected
+2025-05-10 23:33:05,908 - INFO - 1 change detected
+2025-05-10 23:33:06,259 - INFO - 1 change detected
+2025-05-10 23:33:06,610 - INFO - 1 change detected
+2025-05-10 23:33:06,961 - INFO - 1 change detected
+2025-05-10 23:33:07,312 - INFO - 1 change detected
+2025-05-10 23:33:07,663 - INFO - 1 change detected
+2025-05-10 23:33:08,013 - INFO - 1 change detected
+2025-05-10 23:33:08,364 - INFO - 1 change detected
+2025-05-10 23:33:08,715 - INFO - 1 change detected
+2025-05-10 23:33:09,066 - INFO - 1 change detected
+2025-05-10 23:33:09,417 - INFO - 1 change detected
+2025-05-10 23:33:09,768 - INFO - 1 change detected
+2025-05-10 23:33:10,119 - INFO - 1 change detected
+2025-05-10 23:33:10,469 - INFO - 1 change detected
+2025-05-10 23:33:10,820 - INFO - 1 change detected
+2025-05-10 23:33:11,171 - INFO - 1 change detected
+2025-05-10 23:33:11,522 - INFO - 1 change detected
+2025-05-10 23:33:11,874 - INFO - 1 change detected
+2025-05-10 23:33:12,224 - INFO - 1 change detected
+2025-05-10 23:33:12,575 - INFO - 1 change detected
+2025-05-10 23:33:12,926 - INFO - 1 change detected
+2025-05-10 23:33:13,277 - INFO - 1 change detected
+2025-05-10 23:33:13,627 - INFO - 1 change detected
+2025-05-10 23:33:13,978 - INFO - 1 change detected
+2025-05-10 23:33:14,329 - INFO - 1 change detected
+2025-05-10 23:33:14,681 - INFO - 1 change detected
+2025-05-10 23:33:15,031 - INFO - 1 change detected
+2025-05-10 23:33:15,383 - INFO - 1 change detected
+2025-05-10 23:33:15,733 - INFO - 1 change detected
+2025-05-10 23:33:16,084 - INFO - 1 change detected
+2025-05-10 23:33:16,435 - INFO - 1 change detected
+2025-05-10 23:33:16,785 - INFO - 1 change detected
+2025-05-10 23:33:17,136 - INFO - 1 change detected
+2025-05-10 23:33:17,487 - INFO - 1 change detected
+2025-05-10 23:33:17,838 - INFO - 1 change detected
+2025-05-10 23:33:18,189 - INFO - 1 change detected
+2025-05-10 23:33:18,540 - INFO - 1 change detected
+2025-05-10 23:33:18,892 - INFO - 1 change detected
+2025-05-10 23:33:19,243 - INFO - 1 change detected
+2025-05-10 23:33:19,593 - INFO - 1 change detected
+2025-05-10 23:33:19,944 - INFO - 1 change detected
+2025-05-10 23:33:20,295 - INFO - 1 change detected
+2025-05-10 23:33:20,646 - INFO - 1 change detected
+2025-05-10 23:33:20,997 - INFO - 1 change detected
+2025-05-10 23:33:21,347 - INFO - 1 change detected
+2025-05-10 23:33:21,698 - INFO - 1 change detected
+2025-05-10 23:33:22,048 - INFO - 1 change detected
+2025-05-10 23:33:22,399 - INFO - 1 change detected
+2025-05-10 23:33:22,752 - INFO - 1 change detected
+2025-05-10 23:33:23,103 - INFO - 1 change detected
+2025-05-10 23:33:23,454 - INFO - 1 change detected
+2025-05-10 23:33:23,804 - INFO - 1 change detected
+2025-05-10 23:33:24,159 - INFO - 1 change detected
+2025-05-10 23:33:24,509 - INFO - 1 change detected
+2025-05-10 23:33:24,860 - INFO - 1 change detected
+2025-05-10 23:33:25,211 - INFO - 1 change detected
+2025-05-10 23:33:25,562 - INFO - 1 change detected
+2025-05-10 23:33:25,913 - INFO - 1 change detected
+2025-05-10 23:33:26,263 - INFO - 1 change detected
+2025-05-10 23:33:26,614 - INFO - 1 change detected
+2025-05-10 23:33:26,965 - INFO - 1 change detected
+2025-05-10 23:33:27,316 - INFO - 1 change detected
+2025-05-10 23:33:27,666 - INFO - 1 change detected
+2025-05-10 23:33:28,017 - INFO - 1 change detected
+2025-05-10 23:33:28,368 - INFO - 1 change detected
+2025-05-10 23:33:28,718 - INFO - 1 change detected
+2025-05-10 23:33:29,069 - INFO - 1 change detected
+2025-05-10 23:33:29,420 - INFO - 1 change detected
+2025-05-10 23:33:29,771 - INFO - 1 change detected
+2025-05-10 23:33:30,122 - INFO - 1 change detected
+2025-05-10 23:33:30,473 - INFO - 1 change detected
+2025-05-10 23:33:30,824 - INFO - 1 change detected
+2025-05-10 23:33:31,174 - INFO - 1 change detected
+2025-05-10 23:33:31,525 - INFO - 1 change detected
+2025-05-10 23:33:31,876 - INFO - 1 change detected
+2025-05-10 23:33:32,226 - INFO - 1 change detected
+2025-05-10 23:33:32,577 - INFO - 1 change detected
+2025-05-10 23:33:32,928 - INFO - 1 change detected
+2025-05-10 23:33:33,278 - INFO - 1 change detected
+2025-05-10 23:33:33,629 - INFO - 1 change detected
+2025-05-10 23:33:33,980 - INFO - 1 change detected
+2025-05-10 23:33:34,330 - INFO - 1 change detected
+2025-05-10 23:33:34,681 - INFO - 1 change detected
+2025-05-10 23:33:35,032 - INFO - 1 change detected
+2025-05-10 23:33:35,383 - INFO - 1 change detected
+2025-05-10 23:33:35,734 - INFO - 1 change detected
+2025-05-10 23:33:36,085 - INFO - 1 change detected
+2025-05-10 23:33:36,435 - INFO - 1 change detected
+2025-05-10 23:33:36,788 - INFO - 1 change detected
+2025-05-10 23:33:37,139 - INFO - 1 change detected
+2025-05-10 23:33:37,489 - INFO - 1 change detected
+2025-05-10 23:33:37,840 - INFO - 1 change detected
+2025-05-10 23:33:38,191 - INFO - 1 change detected
+2025-05-10 23:33:38,541 - INFO - 1 change detected
+2025-05-10 23:33:38,892 - INFO - 1 change detected
+2025-05-10 23:33:39,243 - INFO - 1 change detected
+2025-05-10 23:33:39,594 - INFO - 1 change detected
+2025-05-10 23:33:39,944 - INFO - 1 change detected
+2025-05-10 23:33:40,296 - INFO - 1 change detected
+2025-05-10 23:33:40,646 - INFO - 1 change detected
+2025-05-10 23:33:40,998 - INFO - 1 change detected
+2025-05-10 23:33:41,348 - INFO - 1 change detected
+2025-05-10 23:33:41,699 - INFO - 1 change detected
+2025-05-10 23:33:42,050 - INFO - 1 change detected
+2025-05-10 23:33:42,400 - INFO - 1 change detected
+2025-05-10 23:33:42,751 - INFO - 1 change detected
+2025-05-10 23:33:43,102 - INFO - 1 change detected
+2025-05-10 23:33:43,452 - INFO - 1 change detected
+2025-05-10 23:33:43,803 - INFO - 1 change detected
+2025-05-10 23:33:44,154 - INFO - 1 change detected
+2025-05-10 23:33:44,504 - INFO - 1 change detected
+2025-05-10 23:33:44,855 - INFO - 1 change detected
+2025-05-10 23:33:45,207 - INFO - 1 change detected
+2025-05-10 23:33:45,559 - INFO - 1 change detected
+2025-05-10 23:33:45,910 - INFO - 1 change detected
+2025-05-10 23:33:46,261 - INFO - 1 change detected
+2025-05-10 23:33:46,611 - INFO - 1 change detected
+2025-05-10 23:33:46,964 - INFO - 1 change detected
+2025-05-10 23:33:47,314 - INFO - 1 change detected
+2025-05-10 23:33:47,665 - INFO - 1 change detected
+2025-05-10 23:33:48,016 - INFO - 1 change detected
+2025-05-10 23:33:48,367 - INFO - 1 change detected
+2025-05-10 23:33:48,718 - INFO - 1 change detected
+2025-05-10 23:33:49,069 - INFO - 1 change detected
+2025-05-10 23:33:49,420 - INFO - 1 change detected
+2025-05-10 23:33:49,770 - INFO - 1 change detected
+2025-05-10 23:33:50,121 - INFO - 1 change detected
+2025-05-10 23:33:50,472 - INFO - 1 change detected
+2025-05-10 23:33:50,822 - INFO - 1 change detected
+2025-05-10 23:33:51,173 - INFO - 1 change detected
+2025-05-10 23:33:51,524 - INFO - 1 change detected
+2025-05-10 23:33:51,875 - INFO - 1 change detected
+2025-05-10 23:33:52,225 - INFO - 1 change detected
+2025-05-10 23:33:52,576 - INFO - 1 change detected
+2025-05-10 23:33:52,927 - INFO - 1 change detected
+2025-05-10 23:33:53,277 - INFO - 1 change detected
+2025-05-10 23:33:53,628 - INFO - 1 change detected
+2025-05-10 23:33:53,979 - INFO - 1 change detected
+2025-05-10 23:33:54,330 - INFO - 1 change detected
+2025-05-10 23:33:54,680 - INFO - 1 change detected
+2025-05-10 23:33:55,031 - INFO - 1 change detected
+2025-05-10 23:33:55,382 - INFO - 1 change detected
+2025-05-10 23:33:55,733 - INFO - 1 change detected
+2025-05-10 23:33:56,083 - INFO - 1 change detected
+2025-05-10 23:33:56,434 - INFO - 1 change detected
+2025-05-10 23:33:56,786 - INFO - 1 change detected
+2025-05-10 23:33:57,136 - INFO - 1 change detected
+2025-05-10 23:33:57,488 - INFO - 1 change detected
+2025-05-10 23:33:57,838 - INFO - 1 change detected
+2025-05-10 23:33:58,189 - INFO - 1 change detected
+2025-05-10 23:33:58,540 - INFO - 1 change detected
+2025-05-10 23:33:58,891 - INFO - 1 change detected
+2025-05-10 23:33:59,243 - INFO - 1 change detected
+2025-05-10 23:33:59,593 - INFO - 1 change detected
+2025-05-10 23:33:59,945 - INFO - 1 change detected
+2025-05-10 23:34:00,296 - INFO - 1 change detected
+2025-05-10 23:34:00,648 - INFO - 1 change detected
+2025-05-10 23:34:00,999 - INFO - 1 change detected
+2025-05-10 23:34:01,351 - INFO - 1 change detected
+2025-05-10 23:34:01,702 - INFO - 1 change detected
+2025-05-10 23:34:02,052 - INFO - 1 change detected
+2025-05-10 23:34:02,403 - INFO - 1 change detected
+2025-05-10 23:34:02,754 - INFO - 1 change detected
+2025-05-10 23:34:03,104 - INFO - 1 change detected
+2025-05-10 23:34:03,455 - INFO - 1 change detected
+2025-05-10 23:34:03,805 - INFO - 1 change detected
+2025-05-10 23:34:04,156 - INFO - 1 change detected
+2025-05-10 23:34:04,507 - INFO - 1 change detected
+2025-05-10 23:34:04,857 - INFO - 1 change detected
+2025-05-10 23:34:05,210 - INFO - 1 change detected
+2025-05-10 23:34:05,562 - INFO - 1 change detected
+2025-05-10 23:34:05,912 - INFO - 1 change detected
+2025-05-10 23:34:06,263 - INFO - 1 change detected
+2025-05-10 23:34:06,614 - INFO - 1 change detected
+2025-05-10 23:34:06,964 - INFO - 1 change detected
+2025-05-10 23:34:07,315 - INFO - 1 change detected
+2025-05-10 23:34:07,666 - INFO - 1 change detected
+2025-05-10 23:34:08,017 - INFO - 1 change detected
+2025-05-10 23:34:08,367 - INFO - 1 change detected
+2025-05-10 23:34:08,718 - INFO - 1 change detected
+2025-05-10 23:34:09,069 - INFO - 1 change detected
+2025-05-10 23:34:09,420 - INFO - 1 change detected
+2025-05-10 23:34:09,770 - INFO - 1 change detected
+2025-05-10 23:34:10,121 - INFO - 1 change detected
+2025-05-10 23:34:10,472 - INFO - 1 change detected
+2025-05-10 23:34:10,823 - INFO - 1 change detected
+2025-05-10 23:34:11,174 - INFO - 1 change detected
+2025-05-10 23:34:11,525 - INFO - 1 change detected
+2025-05-10 23:34:11,875 - INFO - 1 change detected
+2025-05-10 23:34:12,226 - INFO - 1 change detected
+2025-05-10 23:34:12,577 - INFO - 1 change detected
+2025-05-10 23:34:12,928 - INFO - 1 change detected
+2025-05-10 23:34:13,279 - INFO - 1 change detected
+2025-05-10 23:34:13,630 - INFO - 1 change detected
+2025-05-10 23:34:13,980 - INFO - 1 change detected
+2025-05-10 23:34:14,331 - INFO - 1 change detected
+2025-05-10 23:34:14,682 - INFO - 1 change detected
+2025-05-10 23:34:15,033 - INFO - 1 change detected
+2025-05-10 23:34:15,383 - INFO - 1 change detected
+2025-05-10 23:34:15,734 - INFO - 1 change detected
+2025-05-10 23:34:16,085 - INFO - 1 change detected
+2025-05-10 23:34:16,436 - INFO - 1 change detected
+2025-05-10 23:34:16,787 - INFO - 1 change detected
+2025-05-10 23:34:17,138 - INFO - 1 change detected
+2025-05-10 23:34:17,489 - INFO - 1 change detected
+2025-05-10 23:34:17,839 - INFO - 1 change detected
+2025-05-10 23:34:18,190 - INFO - 1 change detected
+2025-05-10 23:34:18,541 - INFO - 1 change detected
+2025-05-10 23:34:18,892 - INFO - 1 change detected
+2025-05-10 23:34:19,244 - INFO - 1 change detected
+2025-05-10 23:34:19,594 - INFO - 1 change detected
+2025-05-10 23:34:19,945 - INFO - 1 change detected
+2025-05-10 23:34:20,295 - INFO - 1 change detected
+2025-05-10 23:34:20,647 - INFO - 1 change detected
+2025-05-10 23:34:20,998 - INFO - 1 change detected
+2025-05-10 23:34:21,349 - INFO - 1 change detected
+2025-05-10 23:34:21,700 - INFO - 1 change detected
+2025-05-10 23:34:22,051 - INFO - 1 change detected
+2025-05-10 23:34:22,402 - INFO - 1 change detected
+2025-05-10 23:34:22,752 - INFO - 1 change detected
+2025-05-10 23:34:23,104 - INFO - 1 change detected
+2025-05-10 23:34:23,455 - INFO - 1 change detected
+2025-05-10 23:34:23,806 - INFO - 1 change detected
+2025-05-10 23:34:24,157 - INFO - 1 change detected
+2025-05-10 23:34:24,508 - INFO - 1 change detected
+2025-05-10 23:34:24,858 - INFO - 1 change detected
+2025-05-10 23:34:25,209 - INFO - 1 change detected
+2025-05-10 23:34:25,561 - INFO - 1 change detected
+2025-05-10 23:34:25,912 - INFO - 1 change detected
+2025-05-10 23:34:26,263 - INFO - 1 change detected
+2025-05-10 23:34:26,613 - INFO - 1 change detected
+2025-05-10 23:34:26,964 - INFO - 1 change detected
+2025-05-10 23:34:27,315 - INFO - 1 change detected
+2025-05-10 23:34:27,666 - INFO - 1 change detected
+2025-05-10 23:34:28,017 - INFO - 1 change detected
+2025-05-10 23:34:28,368 - INFO - 1 change detected
+2025-05-10 23:34:28,719 - INFO - 1 change detected
+2025-05-10 23:34:29,070 - INFO - 1 change detected
+2025-05-10 23:34:29,421 - INFO - 1 change detected
+2025-05-10 23:34:29,773 - INFO - 1 change detected
+2025-05-10 23:34:30,124 - INFO - 1 change detected
+2025-05-10 23:34:30,474 - INFO - 1 change detected
+2025-05-10 23:34:30,825 - INFO - 1 change detected
+2025-05-10 23:34:31,176 - INFO - 1 change detected
+2025-05-10 23:34:31,527 - INFO - 1 change detected
+2025-05-10 23:34:31,878 - INFO - 1 change detected
+2025-05-10 23:34:32,228 - INFO - 1 change detected
+2025-05-10 23:34:32,579 - INFO - 1 change detected
+2025-05-10 23:34:32,930 - INFO - 1 change detected
+2025-05-10 23:34:33,280 - INFO - 1 change detected
+2025-05-10 23:34:33,631 - INFO - 1 change detected
+2025-05-10 23:34:33,982 - INFO - 1 change detected
+2025-05-10 23:34:34,332 - INFO - 1 change detected
+2025-05-10 23:34:34,683 - INFO - 1 change detected
+2025-05-10 23:34:35,034 - INFO - 1 change detected
+2025-05-10 23:34:35,387 - INFO - 1 change detected
+2025-05-10 23:34:35,737 - INFO - 1 change detected
+2025-05-10 23:34:36,088 - INFO - 1 change detected
+2025-05-10 23:34:36,439 - INFO - 1 change detected
+2025-05-10 23:34:36,789 - INFO - 1 change detected
+2025-05-10 23:34:37,140 - INFO - 1 change detected
+2025-05-10 23:34:37,491 - INFO - 1 change detected
+2025-05-10 23:34:37,841 - INFO - 1 change detected
+2025-05-10 23:34:38,192 - INFO - 1 change detected
+2025-05-10 23:34:38,543 - INFO - 1 change detected
+2025-05-10 23:34:38,893 - INFO - 1 change detected
+2025-05-10 23:34:39,244 - INFO - 1 change detected
+2025-05-10 23:34:39,595 - INFO - 1 change detected
+2025-05-10 23:34:39,946 - INFO - 1 change detected
+2025-05-10 23:34:40,297 - INFO - 1 change detected
+2025-05-10 23:34:40,648 - INFO - 1 change detected
+2025-05-10 23:34:40,999 - INFO - 1 change detected
+2025-05-10 23:34:41,350 - INFO - 1 change detected
+2025-05-10 23:34:41,701 - INFO - 1 change detected
+2025-05-10 23:34:42,052 - INFO - 1 change detected
+2025-05-10 23:34:42,402 - INFO - 1 change detected
+2025-05-10 23:34:42,753 - INFO - 1 change detected
+2025-05-10 23:34:43,104 - INFO - 1 change detected
+2025-05-10 23:34:43,455 - INFO - 1 change detected
+2025-05-10 23:34:43,806 - INFO - 1 change detected
+2025-05-10 23:34:44,156 - INFO - 1 change detected
+2025-05-10 23:34:44,507 - INFO - 1 change detected
+2025-05-10 23:34:44,858 - INFO - 1 change detected
+2025-05-10 23:34:45,208 - INFO - 1 change detected
+2025-05-10 23:34:45,559 - INFO - 1 change detected
+2025-05-10 23:34:45,910 - INFO - 1 change detected
+2025-05-10 23:34:46,261 - INFO - 1 change detected
+2025-05-10 23:34:46,611 - INFO - 1 change detected
+2025-05-10 23:34:46,962 - INFO - 1 change detected
+2025-05-10 23:34:47,313 - INFO - 1 change detected
+2025-05-10 23:34:47,663 - INFO - 1 change detected
+2025-05-10 23:34:48,014 - INFO - 1 change detected
+2025-05-10 23:34:48,365 - INFO - 1 change detected
+2025-05-10 23:34:48,716 - INFO - 1 change detected
+2025-05-10 23:34:49,067 - INFO - 1 change detected
+2025-05-10 23:34:49,418 - INFO - 1 change detected
+2025-05-10 23:34:49,769 - INFO - 1 change detected
+2025-05-10 23:34:50,120 - INFO - 1 change detected
+2025-05-10 23:34:50,470 - INFO - 1 change detected
+2025-05-10 23:34:50,821 - INFO - 1 change detected
+2025-05-10 23:34:51,172 - INFO - 1 change detected
+2025-05-10 23:34:51,522 - INFO - 1 change detected
+2025-05-10 23:34:51,873 - INFO - 1 change detected
+2025-05-10 23:34:52,224 - INFO - 1 change detected
+2025-05-10 23:34:52,576 - INFO - 1 change detected
+2025-05-10 23:34:52,927 - INFO - 1 change detected
+2025-05-10 23:34:53,278 - INFO - 1 change detected
+2025-05-10 23:34:53,629 - INFO - 1 change detected
+2025-05-10 23:34:53,980 - INFO - 1 change detected
+2025-05-10 23:34:54,331 - INFO - 1 change detected
+2025-05-10 23:34:54,682 - INFO - 1 change detected
+2025-05-10 23:34:55,032 - INFO - 1 change detected
+2025-05-10 23:34:55,383 - INFO - 1 change detected
+2025-05-10 23:34:55,734 - INFO - 1 change detected
+2025-05-10 23:34:56,085 - INFO - 1 change detected
+2025-05-10 23:34:56,436 - INFO - 1 change detected
+2025-05-10 23:34:56,788 - INFO - 1 change detected
+2025-05-10 23:34:57,139 - INFO - 1 change detected
+2025-05-10 23:34:57,490 - INFO - 1 change detected
+2025-05-10 23:34:57,841 - INFO - 1 change detected
+2025-05-10 23:34:58,192 - INFO - 1 change detected
+2025-05-10 23:34:58,542 - INFO - 1 change detected
+2025-05-10 23:34:58,894 - INFO - 1 change detected
+2025-05-10 23:34:59,245 - INFO - 1 change detected
+2025-05-10 23:34:59,596 - INFO - 1 change detected
+2025-05-10 23:34:59,947 - INFO - 1 change detected
+2025-05-10 23:35:00,298 - INFO - 1 change detected
+2025-05-10 23:35:00,649 - INFO - 1 change detected
+2025-05-10 23:35:01,000 - INFO - 1 change detected
+2025-05-10 23:35:01,351 - INFO - 1 change detected
+2025-05-10 23:35:01,702 - INFO - 1 change detected
+2025-05-10 23:35:02,053 - INFO - 1 change detected
+2025-05-10 23:35:02,403 - INFO - 1 change detected
+2025-05-10 23:35:02,755 - INFO - 1 change detected
+2025-05-10 23:35:03,106 - INFO - 1 change detected
+2025-05-10 23:35:03,457 - INFO - 1 change detected
+2025-05-10 23:35:03,807 - INFO - 1 change detected
+2025-05-10 23:35:04,158 - INFO - 1 change detected
+2025-05-10 23:35:04,509 - INFO - 1 change detected
+2025-05-10 23:35:04,860 - INFO - 1 change detected
+2025-05-10 23:35:05,211 - INFO - 1 change detected
+2025-05-10 23:35:05,561 - INFO - 1 change detected
+2025-05-10 23:35:05,912 - INFO - 1 change detected
+2025-05-10 23:35:06,263 - INFO - 1 change detected
+2025-05-10 23:35:06,614 - INFO - 1 change detected
+2025-05-10 23:35:06,965 - INFO - 1 change detected
+2025-05-10 23:35:07,316 - INFO - 1 change detected
+2025-05-10 23:35:07,666 - INFO - 1 change detected
+2025-05-10 23:35:08,018 - INFO - 1 change detected
+2025-05-10 23:35:08,369 - INFO - 1 change detected
+2025-05-10 23:35:08,720 - INFO - 1 change detected
+2025-05-10 23:35:09,071 - INFO - 1 change detected
+2025-05-10 23:35:09,422 - INFO - 1 change detected
+2025-05-10 23:35:09,774 - INFO - 1 change detected
+2025-05-10 23:35:10,125 - INFO - 1 change detected
+2025-05-10 23:35:10,476 - INFO - 1 change detected
+2025-05-10 23:35:10,827 - INFO - 1 change detected
+2025-05-10 23:35:11,178 - INFO - 1 change detected
+2025-05-10 23:35:11,528 - INFO - 1 change detected
+2025-05-10 23:35:11,879 - INFO - 1 change detected
+2025-05-10 23:35:12,231 - INFO - 1 change detected
+2025-05-10 23:35:12,582 - INFO - 1 change detected
+2025-05-10 23:35:12,933 - INFO - 1 change detected
+2025-05-10 23:35:13,284 - INFO - 1 change detected
+2025-05-10 23:35:13,635 - INFO - 1 change detected
+2025-05-10 23:35:13,985 - INFO - 1 change detected
+2025-05-10 23:35:14,336 - INFO - 1 change detected
+2025-05-10 23:35:14,688 - INFO - 1 change detected
+2025-05-10 23:35:15,039 - INFO - 1 change detected
+2025-05-10 23:35:15,390 - INFO - 1 change detected
+2025-05-10 23:35:15,741 - INFO - 1 change detected
+2025-05-10 23:35:16,092 - INFO - 1 change detected
+2025-05-10 23:35:16,443 - INFO - 1 change detected
+2025-05-10 23:35:16,794 - INFO - 1 change detected
+2025-05-10 23:35:17,145 - INFO - 1 change detected
+2025-05-10 23:35:17,496 - INFO - 1 change detected
+2025-05-10 23:35:17,846 - INFO - 1 change detected
+2025-05-10 23:35:18,198 - INFO - 1 change detected
+2025-05-10 23:35:18,549 - INFO - 1 change detected
+2025-05-10 23:35:18,900 - INFO - 1 change detected
+2025-05-10 23:35:19,251 - INFO - 1 change detected
+2025-05-10 23:35:19,601 - INFO - 1 change detected
+2025-05-10 23:35:19,952 - INFO - 1 change detected
+2025-05-10 23:35:20,303 - INFO - 1 change detected
+2025-05-10 23:35:20,654 - INFO - 1 change detected
+2025-05-10 23:35:21,005 - INFO - 1 change detected
+2025-05-10 23:35:21,356 - INFO - 1 change detected
+2025-05-10 23:35:21,706 - INFO - 1 change detected
+2025-05-10 23:35:22,058 - INFO - 1 change detected
+2025-05-10 23:35:22,409 - INFO - 1 change detected
+2025-05-10 23:35:22,760 - INFO - 1 change detected
+2025-05-10 23:35:23,111 - INFO - 1 change detected
+2025-05-10 23:35:23,462 - INFO - 1 change detected
+2025-05-10 23:35:23,812 - INFO - 1 change detected
+2025-05-10 23:35:24,163 - INFO - 1 change detected
+2025-05-10 23:35:24,514 - INFO - 1 change detected
+2025-05-10 23:35:24,865 - INFO - 1 change detected
+2025-05-10 23:35:25,216 - INFO - 1 change detected
+2025-05-10 23:35:25,568 - INFO - 1 change detected
+2025-05-10 23:35:25,919 - INFO - 1 change detected
+2025-05-10 23:35:26,271 - INFO - 1 change detected
+2025-05-10 23:35:26,622 - INFO - 1 change detected
+2025-05-10 23:35:26,973 - INFO - 1 change detected
+2025-05-10 23:35:27,324 - INFO - 1 change detected
+2025-05-10 23:35:27,676 - INFO - 1 change detected
+2025-05-10 23:35:28,027 - INFO - 1 change detected
+2025-05-10 23:35:28,378 - INFO - 1 change detected
+2025-05-10 23:35:28,730 - INFO - 1 change detected
+2025-05-10 23:35:29,081 - INFO - 1 change detected
+2025-05-10 23:35:29,432 - INFO - 1 change detected
+2025-05-10 23:35:29,783 - INFO - 1 change detected
+2025-05-10 23:35:30,133 - INFO - 1 change detected
+2025-05-10 23:35:30,484 - INFO - 1 change detected
+2025-05-10 23:35:30,835 - INFO - 1 change detected
+2025-05-10 23:35:31,186 - INFO - 1 change detected
+2025-05-10 23:35:31,537 - INFO - 1 change detected
+2025-05-10 23:35:31,888 - INFO - 1 change detected
+2025-05-10 23:35:32,239 - INFO - 1 change detected
+2025-05-10 23:35:32,590 - INFO - 1 change detected
+2025-05-10 23:35:32,941 - INFO - 1 change detected
+2025-05-10 23:35:33,292 - INFO - 1 change detected
+2025-05-10 23:35:33,643 - INFO - 1 change detected
+2025-05-10 23:35:33,994 - INFO - 1 change detected
+2025-05-10 23:35:34,345 - INFO - 1 change detected
+2025-05-10 23:35:34,695 - INFO - 1 change detected
+2025-05-10 23:35:35,046 - INFO - 1 change detected
+2025-05-10 23:35:35,397 - INFO - 1 change detected
+2025-05-10 23:35:35,748 - INFO - 1 change detected
+2025-05-10 23:35:36,099 - INFO - 1 change detected
+2025-05-10 23:35:36,450 - INFO - 1 change detected
+2025-05-10 23:35:36,801 - INFO - 1 change detected
+2025-05-10 23:35:37,153 - INFO - 1 change detected
+2025-05-10 23:35:37,503 - INFO - 1 change detected
+2025-05-10 23:35:37,854 - INFO - 1 change detected
+2025-05-10 23:35:38,205 - INFO - 1 change detected
+2025-05-10 23:35:38,556 - INFO - 1 change detected
+2025-05-10 23:35:38,907 - INFO - 1 change detected
+2025-05-10 23:35:39,264 - INFO - 1 change detected
+2025-05-10 23:35:39,615 - INFO - 1 change detected
+2025-05-10 23:35:39,966 - INFO - 1 change detected
+2025-05-10 23:35:40,317 - INFO - 1 change detected
+2025-05-10 23:35:40,668 - INFO - 1 change detected
+2025-05-10 23:35:41,019 - INFO - 1 change detected
+2025-05-10 23:35:41,370 - INFO - 1 change detected
+2025-05-10 23:35:41,722 - INFO - 1 change detected
+2025-05-10 23:35:42,073 - INFO - 1 change detected
+2025-05-10 23:35:42,424 - INFO - 1 change detected
+2025-05-10 23:35:42,775 - INFO - 1 change detected
+2025-05-10 23:35:43,126 - INFO - 1 change detected
+2025-05-10 23:35:43,477 - INFO - 1 change detected
+2025-05-10 23:35:43,828 - INFO - 1 change detected
+2025-05-10 23:35:44,179 - INFO - 1 change detected
+2025-05-10 23:35:44,530 - INFO - 1 change detected
+2025-05-10 23:35:44,881 - INFO - 1 change detected
+2025-05-10 23:35:45,232 - INFO - 1 change detected
+2025-05-10 23:35:45,583 - INFO - 1 change detected
+2025-05-10 23:35:45,934 - INFO - 1 change detected
+2025-05-10 23:35:46,285 - INFO - 1 change detected
+2025-05-10 23:35:46,636 - INFO - 1 change detected
+2025-05-10 23:35:46,987 - INFO - 1 change detected
+2025-05-10 23:35:47,338 - INFO - 1 change detected
+2025-05-10 23:35:47,689 - INFO - 1 change detected
+2025-05-10 23:35:48,040 - INFO - 1 change detected
+2025-05-10 23:35:48,391 - INFO - 1 change detected
+2025-05-10 23:35:48,742 - INFO - 1 change detected
+2025-05-10 23:35:49,093 - INFO - 1 change detected
+2025-05-10 23:35:49,444 - INFO - 1 change detected
+2025-05-10 23:35:49,795 - INFO - 1 change detected
+2025-05-10 23:35:50,146 - INFO - 1 change detected
+2025-05-10 23:35:50,498 - INFO - 1 change detected
+2025-05-10 23:35:50,849 - INFO - 1 change detected
+2025-05-10 23:35:51,200 - INFO - 1 change detected
+2025-05-10 23:35:51,551 - INFO - 1 change detected
+2025-05-10 23:35:51,902 - INFO - 1 change detected
+2025-05-10 23:35:52,253 - INFO - 1 change detected
+2025-05-10 23:35:52,604 - INFO - 1 change detected
+2025-05-10 23:35:52,955 - INFO - 1 change detected
+2025-05-10 23:35:53,306 - INFO - 1 change detected
+2025-05-10 23:35:53,657 - INFO - 1 change detected
+2025-05-10 23:35:54,008 - INFO - 1 change detected
+2025-05-10 23:35:54,360 - INFO - 1 change detected
+2025-05-10 23:35:54,711 - INFO - 1 change detected
+2025-05-10 23:35:55,063 - INFO - 1 change detected
+2025-05-10 23:35:55,414 - INFO - 1 change detected
+2025-05-10 23:35:55,765 - INFO - 1 change detected
+2025-05-10 23:35:56,117 - INFO - 1 change detected
+2025-05-10 23:35:56,468 - INFO - 1 change detected
+2025-05-10 23:35:56,819 - INFO - 1 change detected
+2025-05-10 23:35:57,170 - INFO - 1 change detected
+2025-05-10 23:35:57,521 - INFO - 1 change detected
+2025-05-10 23:35:57,872 - INFO - 1 change detected
+2025-05-10 23:35:58,223 - INFO - 1 change detected
+2025-05-10 23:35:58,574 - INFO - 1 change detected
+2025-05-10 23:35:58,925 - INFO - 1 change detected
+2025-05-10 23:35:59,276 - INFO - 1 change detected
+2025-05-10 23:35:59,627 - INFO - 1 change detected
+2025-05-10 23:35:59,978 - INFO - 1 change detected
+2025-05-10 23:36:00,329 - INFO - 1 change detected
+2025-05-10 23:36:00,680 - INFO - 1 change detected
+2025-05-10 23:36:01,031 - INFO - 1 change detected
+2025-05-10 23:36:01,382 - INFO - 1 change detected
+2025-05-10 23:36:01,733 - INFO - 1 change detected
+2025-05-10 23:36:02,084 - INFO - 1 change detected
+2025-05-10 23:36:02,435 - INFO - 1 change detected
+2025-05-10 23:36:02,786 - INFO - 1 change detected
+2025-05-10 23:36:03,137 - INFO - 1 change detected
+2025-05-10 23:36:03,488 - INFO - 1 change detected
+2025-05-10 23:36:03,839 - INFO - 1 change detected
+2025-05-10 23:36:04,190 - INFO - 1 change detected
+2025-05-10 23:36:04,540 - INFO - 1 change detected
+2025-05-10 23:36:04,892 - INFO - 1 change detected
+2025-05-10 23:36:05,243 - INFO - 1 change detected
+2025-05-10 23:36:05,594 - INFO - 1 change detected
+2025-05-10 23:36:05,945 - INFO - 1 change detected
+2025-05-10 23:36:06,295 - INFO - 1 change detected
+2025-05-10 23:36:06,646 - INFO - 1 change detected
+2025-05-10 23:36:06,997 - INFO - 1 change detected
+2025-05-10 23:36:07,347 - INFO - 1 change detected
+2025-05-10 23:36:07,699 - INFO - 1 change detected
+2025-05-10 23:36:08,050 - INFO - 1 change detected
+2025-05-10 23:36:08,403 - INFO - 1 change detected
+2025-05-10 23:36:08,754 - INFO - 1 change detected
+2025-05-10 23:36:09,105 - INFO - 1 change detected
+2025-05-10 23:36:09,457 - INFO - 1 change detected
+2025-05-10 23:36:09,808 - INFO - 1 change detected
+2025-05-10 23:36:10,159 - INFO - 1 change detected
+2025-05-10 23:36:10,511 - INFO - 1 change detected
+2025-05-10 23:36:10,862 - INFO - 1 change detected
+2025-05-10 23:36:11,219 - INFO - 1 change detected
+2025-05-10 23:36:11,571 - INFO - 1 change detected
+2025-05-10 23:36:11,922 - INFO - 1 change detected
+2025-05-10 23:36:12,273 - INFO - 1 change detected
+2025-05-10 23:36:12,624 - INFO - 1 change detected
+2025-05-10 23:36:12,976 - INFO - 1 change detected
+2025-05-10 23:36:13,326 - INFO - 1 change detected
+2025-05-10 23:36:13,677 - INFO - 1 change detected
+2025-05-10 23:36:14,029 - INFO - 1 change detected
+2025-05-10 23:36:14,379 - INFO - 1 change detected
+2025-05-10 23:36:14,730 - INFO - 1 change detected
+2025-05-10 23:36:15,081 - INFO - 1 change detected
+2025-05-10 23:36:15,432 - INFO - 1 change detected
+2025-05-10 23:36:15,782 - INFO - 1 change detected
+2025-05-10 23:36:16,133 - INFO - 1 change detected
+2025-05-10 23:36:16,484 - INFO - 1 change detected
+2025-05-10 23:36:16,834 - INFO - 1 change detected
+2025-05-10 23:36:17,185 - INFO - 1 change detected
+2025-05-10 23:36:17,537 - INFO - 1 change detected
+2025-05-10 23:36:17,888 - INFO - 1 change detected
+2025-05-10 23:36:18,239 - INFO - 1 change detected
+2025-05-10 23:36:18,590 - INFO - 1 change detected
+2025-05-10 23:36:18,941 - INFO - 1 change detected
+2025-05-10 23:36:19,292 - INFO - 1 change detected
+2025-05-10 23:36:19,643 - INFO - 1 change detected
+2025-05-10 23:36:19,994 - INFO - 1 change detected
+2025-05-10 23:36:20,345 - INFO - 1 change detected
+2025-05-10 23:36:20,696 - INFO - 1 change detected
+2025-05-10 23:36:21,047 - INFO - 1 change detected
+2025-05-10 23:36:21,398 - INFO - 1 change detected
+2025-05-10 23:36:21,750 - INFO - 1 change detected
+2025-05-10 23:36:22,101 - INFO - 1 change detected
+2025-05-10 23:36:22,453 - INFO - 1 change detected
+2025-05-10 23:36:22,804 - INFO - 2 changes detected
+2025-05-10 23:36:22,807 - WARNING - WatchFiles detected changes in 'server.py'. Reloading...
+2025-05-10 23:36:22,879 - INFO - Shutting down
+2025-05-10 23:36:22,981 - INFO - Waiting for application shutdown.
+2025-05-10 23:36:22,982 - INFO - Application shutdown complete.
+2025-05-10 23:36:22,983 - INFO - Finished server process [170888]
+2025-05-10 23:36:23,340 - INFO - 1 change detected
+2025-05-10 23:36:23,671 - INFO - Started server process [190409]
+2025-05-10 23:36:23,673 - INFO - Waiting for application startup.
+2025-05-10 23:36:23,674 - INFO - Application startup complete.
+2025-05-10 23:36:23,741 - INFO - 4 changes detected
+2025-05-10 23:36:24,092 - INFO - 1 change detected
+2025-05-10 23:36:24,442 - INFO - 1 change detected
+2025-05-10 23:36:24,793 - INFO - 1 change detected
+2025-05-10 23:36:25,143 - INFO - 1 change detected
+2025-05-10 23:36:25,494 - INFO - 1 change detected
+2025-05-10 23:36:25,845 - INFO - 1 change detected
+2025-05-10 23:36:26,196 - INFO - 1 change detected
+2025-05-10 23:36:26,547 - INFO - 1 change detected
+2025-05-10 23:36:26,898 - INFO - 1 change detected
+2025-05-10 23:36:27,249 - INFO - 1 change detected
+2025-05-10 23:36:27,600 - INFO - 1 change detected
+2025-05-10 23:36:27,952 - INFO - 1 change detected
+2025-05-10 23:36:28,303 - INFO - 1 change detected
+2025-05-10 23:36:28,654 - INFO - 1 change detected
+2025-05-10 23:36:29,091 - INFO - Shutting down
+2025-05-10 23:36:29,192 - INFO - Waiting for application shutdown.
+2025-05-10 23:36:29,194 - INFO - Application shutdown complete.
+2025-05-10 23:36:29,196 - INFO - Finished server process [190409]
+2025-05-10 23:36:29,228 - INFO - Stopping reloader process [170798]
+2025-05-10 23:36:32,711 - INFO - Will watch for changes in these directories: ['/home/saksham/dev/text-to-manim/manim-service']
+2025-05-10 23:36:32,712 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-05-10 23:36:32,713 - INFO - Started reloader process [190628] using WatchFiles
+2025-05-10 23:36:33,344 - INFO - Started server process [190630]
+2025-05-10 23:36:33,346 - INFO - Waiting for application startup.
+2025-05-10 23:36:33,347 - INFO - Application startup complete.
+2025-05-10 23:36:33,440 - INFO - 1 change detected
+2025-05-10 23:36:33,791 - INFO - 1 change detected
+2025-05-10 23:36:34,142 - INFO - 1 change detected
+2025-05-10 23:36:34,494 - INFO - 1 change detected
+2025-05-10 23:36:34,845 - INFO - 1 change detected
+2025-05-10 23:36:35,197 - INFO - 1 change detected
+2025-05-10 23:36:35,548 - INFO - 1 change detected
+2025-05-10 23:36:35,655 - INFO - Shutting down
+2025-05-10 23:36:35,756 - INFO - Waiting for application shutdown.
+2025-05-10 23:36:35,758 - INFO - Application shutdown complete.
+2025-05-10 23:36:35,760 - INFO - Finished server process [190630]
+2025-05-10 23:36:35,775 - INFO - Stopping reloader process [190628]
+2025-05-10 23:36:42,244 - INFO - Will watch for changes in these directories: ['/home/saksham/dev/text-to-manim/manim-service']
+2025-05-10 23:36:42,245 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-05-10 23:36:42,246 - INFO - Started reloader process [190831] using WatchFiles
+2025-05-10 23:36:42,861 - INFO - Started server process [190834]
+2025-05-10 23:36:42,864 - INFO - Waiting for application startup.
+2025-05-10 23:36:42,864 - INFO - Application startup complete.
+2025-05-10 23:36:42,924 - INFO - 1 change detected
+2025-05-10 23:36:43,275 - INFO - 1 change detected
+2025-05-10 23:36:43,626 - INFO - 1 change detected
+2025-05-10 23:36:43,978 - INFO - 1 change detected
+2025-05-10 23:36:44,329 - INFO - 1 change detected
+2025-05-10 23:36:44,672 - INFO - Shutting down
+2025-05-10 23:36:44,774 - INFO - Waiting for application shutdown.
+2025-05-10 23:36:44,776 - INFO - Application shutdown complete.
+2025-05-10 23:36:44,778 - INFO - Finished server process [190834]
+2025-05-10 23:36:44,788 - INFO - Stopping reloader process [190831]
+2025-05-10 23:37:26,511 - INFO - Will watch for changes in these directories: ['/home/saksham/dev/text-to-manim/manim-service']
+2025-05-10 23:37:26,512 - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-05-10 23:37:26,513 - INFO - Started reloader process [191249] using WatchFiles
+2025-05-10 23:37:27,098 - INFO - Started server process [191263]
+2025-05-10 23:37:27,101 - INFO - Waiting for application startup.
+2025-05-10 23:37:27,102 - INFO - Application startup complete.
+2025-05-10 23:37:27,190 - INFO - 1 change detected
+2025-05-10 23:37:27,542 - INFO - 1 change detected
+2025-05-10 23:37:27,893 - INFO - 1 change detected
+2025-05-10 23:37:28,245 - INFO - 1 change detected
+2025-05-10 23:37:28,596 - INFO - 1 change detected
+2025-05-10 23:37:29,006 - INFO - Shutting down
+2025-05-10 23:37:29,109 - INFO - Waiting for application shutdown.
+2025-05-10 23:37:29,110 - INFO - Application shutdown complete.
+2025-05-10 23:37:29,110 - INFO - Finished server process [191263]
+2025-05-10 23:37:29,116 - INFO - Stopping reloader process [191249]
