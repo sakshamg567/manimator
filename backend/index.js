@@ -23,8 +23,7 @@ const coder_system_prompt = config.coder_system_prompt
 const app = express()
 app.use(express.json())
 
-
-// job array to store running jobs
+// job store to store running jobs
 const jobs = {
    123: {
       status: "waiting",
@@ -58,7 +57,7 @@ const GenerateAndUploadVideoToCloudinary = async (code, jobId) => {
    jobs[jobId].status = "starting_generation";
    const response = await axios.post(
       "http://localhost:8000/generate-video",
-      { manim_code: code },
+      { manim_code: code, job_id: jobId },
       { responseType: "stream" }
    )
 
@@ -97,8 +96,6 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
             system: coder_system_prompt,
             prompt:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`
          })
-
-         console.log(text);
 
          const code = extractCodeFromLLMResponse(text)
          jobs[jobId].status = "code_generated"
