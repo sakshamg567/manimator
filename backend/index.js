@@ -118,7 +118,7 @@ app.post('/generate', async (req, res) => {
 
    const { messages } = req.body;
 
-   const { text } = await ai.models.generateContent({
+   const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-preview-04-17",
       contents: messages,
       config: {
@@ -128,7 +128,7 @@ app.post('/generate', async (req, res) => {
 
    let jobId = null;
 
-   const AnimationStepBreakdown = getBreakdown(text);
+   const AnimationStepBreakdown = getBreakdown(response.text);
 
    if (AnimationStepBreakdown) {
       jobId = crypto.randomUUID()
@@ -142,7 +142,7 @@ app.post('/generate', async (req, res) => {
       startGenerationFlow(jobId, messages[messages.length - 1].content, AnimationStepBreakdown);
    }
 
-   res.json({ llmResponse: text, jobId: jobId });
+   res.json({ llmResponse: response.text, jobId: jobId });
 
 })
 
