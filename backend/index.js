@@ -1,8 +1,6 @@
 const express = require("express")
 const { GoogleGenAI } = require("@google/genai")
-const { google } = require("@ai-sdk/google")
 const dotenv = require("dotenv")
-const { generateText } = require("ai")
 const fs = require("fs")
 const cors = require("cors")
 const { default: axios } = require("axios")
@@ -120,10 +118,12 @@ app.post('/generate', async (req, res) => {
 
    const { messages } = req.body;
 
-   const { text } = await generateText({
-      model: google("gemini-2.5-flash-preview-04-17"),
-      messages,
-      system: analyzer_system_prompt
+   const { text } = await ai.models.generateContent({
+      model: "gemini-2.5-flash-preview-04-17",
+      contents: messages,
+      config: {
+         systemInstruction: analyzer_system_prompt
+      }
    })
 
    let jobId = null;
