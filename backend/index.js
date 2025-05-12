@@ -1,5 +1,5 @@
 const express = require("express")
-const { google } = require("@ai-sdk/google")
+const { GoogleGenAI } = require("@google/genai")
 const dotenv = require("dotenv")
 const { generateText } = require("ai")
 const fs = require("fs")
@@ -9,6 +9,8 @@ const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto")
 
 dotenv.config()
+
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
 cloudinary.config({
    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -91,13 +93,15 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
 
          console.log(`[${jobId}] Code generation started`);
 
-         const { text } = await generateText({
-            model: google("gemini-2.5-flash-preview-04-17"),
-            system: coder_system_prompt,
-            prompt:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`
+         const response = await ai.models.generateContent({
+            model: "gemini-2.5-pro-preview-05-06",
+            config: {
+               systemInstruction: coder_system_prompt
+            },
+            contents:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`
          })
 
-         const code = extractCodeFromLLMResponse(text)
+         const code = extractCodeFromLLMResponse(response.text)
          jobs[jobId].status = "code_generated"
 
          const videoUrl = await GenerateAndUploadVideoToCloudinary(code, jobId);
