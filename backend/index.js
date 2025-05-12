@@ -1,5 +1,6 @@
 const express = require("express")
 const { GoogleGenAI } = require("@google/genai")
+const { google } = require("@ai-sdk/google")
 const dotenv = require("dotenv")
 const { generateText } = require("ai")
 const fs = require("fs")
