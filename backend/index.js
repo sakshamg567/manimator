@@ -32,7 +32,7 @@ const jobs = {
 };
 
 app.use(cors({
-   origin: 'http://localhost:5173'
+   origin: 'https://manimorph.vercel.app'
 }))
 
 const getBreakdown = (llmResponse) => {
@@ -56,7 +56,7 @@ function extractCodeFromLLMResponse(responseText) {
 const GenerateAndUploadVideoToCloudinary = async (code, jobId) => {
    jobs[jobId].status = "starting_generation";
    const response = await axios.post(
-      "http://localhost:8000/generate-video",
+      "https://manim-backend.sakshamdev.me/generate-video",
       { manim_code: code, job_id: jobId },
       { responseType: "stream" }
    )
@@ -92,7 +92,7 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
          console.log(`[${jobId}] Code generation started`);
 
          const { text } = await generateText({
-            model: google("gemini-2.5-pro-exp-03-25"),
+            model: google("gemini-2.5-flash-preview-04-17"),
             system: coder_system_prompt,
             prompt:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`
          })
