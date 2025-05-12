@@ -74,7 +74,7 @@ export default function Home() {
           <Textarea
             ref={textareaRef}
             className="resize-none max-w-3xl w-full pr-16 overflow-auto max-h-72"
-            placeholder="Ask Manimator to visualize..."
+            placeholder="Ask Manimorph to visualize..."
             value={inputText}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}

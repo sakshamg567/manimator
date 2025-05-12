@@ -128,7 +128,7 @@ const Chat = () => {
 
       // Start polling
       pollingRef.current = setInterval(() => {
-         axios.get(`http://localhost:3000/api/job/${jobId}/status`)
+         axios.get(`https://manimorph-backend.onrender.com/api/job/${jobId}/status`)
             .then(response => {
                const { status, video_url } = response.data;
 
@@ -201,7 +201,7 @@ const Chat = () => {
 
       try {
          // Send the initial message to generate API
-         const response = await axios.post('http://localhost:3000/generate', {
+         const response = await axios.post('https://manimorph-backend.onrender.com/generate', {
             messages: [initialMessage]
          });
 
@@ -277,7 +277,7 @@ const Chat = () => {
          const chatId = queryParams.get('id');
 
          // Send the accumulated messages to the backend
-         const response = await axios.post('http://localhost:3000/generate', {
+         const response = await axios.post('https://manimorph-backend.onrender.com/generate', {
             messages: updatedMessages
          });
 
@@ -351,14 +351,14 @@ const Chat = () => {
                      className={`mb-4 p-3 rounded-lg break-words text-white text-sm`}
                   >
                      <div className="font-bold mb-1">
-                        {message.role === 'user' ? 'You' : 'Manimator'}
+                        {message.role === 'user' ? 'You' : 'Manimorph '}
                      </div>
                      <div className="whitespace-pre-wrap overflow-wrap-anywhere">{message.content}</div>
                   </div>
                ))}
                {isSubmitting && !currentJobId && (
                   <div className="mb-4 p-3 rounded-lg text-white">
-                     <div className="font-bold mb-1">Manimator</div>
+                     <div className="font-bold mb-1">Manimorph </div>
                      <div className="animate-pulse">Generating response...</div>
                   </div>
                )}
@@ -370,7 +370,7 @@ const Chat = () => {
                      <Textarea
                         ref={textareaRef}
                         className="resize-none w-full pr-16 overflow-auto max-h-72 bg-[#1A1A1C] px-4 py-3 rounded-md"
-                        placeholder={currentJobId ? "Please wait until video generation is complete..." : "Ask Manimator..."}
+                        placeholder={currentJobId ? "Please wait until video generation is complete..." : "Ask Manimorph ..."}
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleKeyDown}
@@ -437,7 +437,7 @@ const Chat = () => {
                <div className="text-center opacity-70">
                   <p>Your visualization will appear here</p>
                   <p className="text-xs mt-2 text-[#AAAAAA]">
-                     Ask Manimator to create an animation for you
+                     Ask Manimorph to create an animation for you
                   </p>
                </div>
             )}
