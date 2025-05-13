@@ -117,7 +117,7 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
             
             clearTimeout(timeoutId)
 
-            const code = extractCodeFromLLMResponse(text)
+            const code = extractCodeFromLLMResponse(response.text)
             jobs[jobId].status = "code_generated"
    
             const videoUrl = await GenerateAndUploadVideoToCloudinary(code, jobId);
