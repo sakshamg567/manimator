@@ -1,6 +1,7 @@
 const express = require("express")
-const { GoogleGenAI } = require("@google/genai")
+const { google } = require("@ai-sdk/google")
 const dotenv = require("dotenv")
+const { generateText } = require("ai")
 const fs = require("fs")
 const cors = require("cors")
 const { default: axios } = require("axios")
@@ -8,8 +9,6 @@ const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto")
 
 dotenv.config()
-
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
 cloudinary.config({
    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -92,23 +91,39 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
 
          console.log(`[${jobId}] Code generation started`);
 
-         const response = await ai.models.generateContent({
-            model: "gemini-2.5-pro-preview-05-06",
-            config: {
-               systemInstruction: coder_system_prompt
-            },
-            contents:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`
-         })
+         const controller = new AbortController()
+         const timeoutId = setTimeout(() => controller.abort(), 30000)
 
-         const code = extractCodeFromLLMResponse(response.text)
-         jobs[jobId].status = "code_generated"
+         try {
+            const { text } = await generateText({
+               model: google("gemini-2.5-flash-preview-04-17"),
+               system: coder_system_prompt,
+               prompt:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`,
+               temperature: 0.6,
+               abortSignal: controller.signal
+            })
 
-         const videoUrl = await GenerateAndUploadVideoToCloudinary(code, jobId);
+            clearTimeout(timeoutId)
 
-         jobs[jobId].status = "done";
-         jobs[jobId].videoUrl = videoUrl;
+            const code = extractCodeFromLLMResponse(text)
+            jobs[jobId].status = "code_generated"
+   
+            const videoUrl = await GenerateAndUploadVideoToCloudinary(code, jobId);
+   
+            jobs[jobId].status = "done";
+            jobs[jobId].videoUrl = videoUrl;
 
+         } catch (error) {
+            clearTimeout(timeoutId)
+            if (error.name === "AbortError") {
+               console.error(`[${jobId}] Code gen timed out`);
+               jobs[jobId].status = "error : Code gen timed out";
+            } else {
+               throw error;
+            }
+         }
       } catch (err) {
+         console.error(`[${jobId}] Error in generation flow:`, err);
          jobs[jobId].status = "error";
       }
    })();
@@ -118,17 +133,15 @@ app.post('/generate', async (req, res) => {
 
    const { messages } = req.body;
 
-   const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-preview-04-17",
-      contents: messages,
-      config: {
-         systemInstruction: analyzer_system_prompt
-      }
+   const { text } = await generateText({
+      model: google("gemini-2.5-flash-preview-04-17"),
+      messages,
+      system: analyzer_system_prompt
    })
 
    let jobId = null;
 
-   const AnimationStepBreakdown = getBreakdown(response.text);
+   const AnimationStepBreakdown = getBreakdown(text);
 
    if (AnimationStepBreakdown) {
       jobId = crypto.randomUUID()
@@ -142,7 +155,7 @@ app.post('/generate', async (req, res) => {
       startGenerationFlow(jobId, messages[messages.length - 1].content, AnimationStepBreakdown);
    }
 
-   res.json({ llmResponse: response.text, jobId: jobId });
+   res.json({ llmResponse: text, jobId: jobId });
 
 })
 
