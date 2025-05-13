@@ -1,7 +1,8 @@
 const express = require("express")
 const { google } = require("@ai-sdk/google")
-const dotenv = require("dotenv")
 const { generateText } = require("ai")
+const { GoogleGenerativeAI } = require("@google/generative-ai")
+const dotenv = require("dotenv")
 const fs = require("fs")
 const cors = require("cors")
 const { default: axios } = require("axios")
@@ -9,6 +10,12 @@ const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto")
 
 dotenv.config()
+
+const ai = new GoogleGenAI({
+      apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+   });
+
+
 
 cloudinary.config({
    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -19,6 +26,8 @@ cloudinary.config({
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const analyzer_system_prompt = config.analyzer_system_prompt;
 const coder_system_prompt = config.coder_system_prompt
+
+
 
 const app = express()
 app.use(express.json())
@@ -92,17 +101,20 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
          console.log(`[${jobId}] Code generation started`);
 
          const controller = new AbortController()
-         const timeoutId = setTimeout(() => controller.abort(), 30000)
+         const timeoutId = setTimeout(() => controller.abort(), 60000)
 
          try {
-            const { text } = await generateText({
-               model: google("gemini-2.5-flash-preview-04-17"),
-               system: coder_system_prompt,
-               prompt:`User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`,
-               temperature: 0.6,
-               abortSignal: controller.signal
+            const response = await ai.models.generateContent({
+               model: "gemini-2.5-pro-exp-03-25",
+               config: {
+                  responseMimeType: 'text/plain',
+                  systemInstruction: coder_system_prompt,
+               },
+               contents: `User request: ${prompt}\n\nBreakdown:\n${AnimationStepBreakdown}`,
             })
 
+            console.log(response.text);
+            
             clearTimeout(timeoutId)
 
             const code = extractCodeFromLLMResponse(text)
