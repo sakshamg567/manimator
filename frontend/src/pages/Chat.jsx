@@ -128,7 +128,7 @@ const Chat = () => {
 
       // Start polling
       pollingRef.current = setInterval(() => {
-         axios.get(`https://manimorph-backend.onrender.com/api/job/${jobId}/status`)
+         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/job/${jobId}/status`)
             .then(response => {
                const { status, video_url } = response.data;
 
@@ -201,7 +201,7 @@ const Chat = () => {
 
       try {
          // Send the initial message to generate API
-         const response = await axios.post('https://manimorph-backend.onrender.com/generate', {
+         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/generate`, {
             messages: [initialMessage]
          });
 
@@ -277,7 +277,7 @@ const Chat = () => {
          const chatId = queryParams.get('id');
 
          // Send the accumulated messages to the backend
-         const response = await axios.post('https://manimorph-backend.onrender.com/generate', {
+         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/generate`, {
             messages: updatedMessages
          });
 
