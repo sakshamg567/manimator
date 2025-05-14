@@ -2,3 +2,7 @@ __pycache__/
 .venv/
 media/
 uv.lock
+manim_jobs/
+.bash_history
+manim_service.log
+.cache/
