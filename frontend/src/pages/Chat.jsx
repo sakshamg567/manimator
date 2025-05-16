@@ -2,7 +2,77 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Textarea } from '../components/ui/textarea';
 import AnimationIcon from '@mui/icons-material/Animation';
 import axios from 'axios';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+// Helper function to parse text and render LaTeX
+const renderWithLatex = (text) => {
+  if (!text) return null;
+  
+  // Regular expression to match inline LaTeX: $...$
+  const inlineRegex = /\$([^$]+)\$/g;
+  
+  // Regular expression to match block LaTeX: $$...$$
+  const blockRegex = /\$\$([^$]+)\$\$/g;
+  
+  // Split by block math first
+  const blockParts = text.split(blockRegex);
+  
+  return blockParts.map((part, index) => {
+    // Even indices are text (possibly with inline math)
+    if (index % 2 === 0) {
+      // For text parts, process inline math
+      const inlineParts = part.split(inlineRegex);
+      
+      return (
+        <span key={`block-${index}`}>
+          {inlineParts.map((inlinePart, inlineIndex) => {
+            // Even indices are plain text, odd indices are inline math
+            return inlineIndex % 2 === 0 ? (
+              <span key={`inline-${inlineIndex}`}>{inlinePart}</span>
+            ) : (
+              <InlineMath key={`inline-${inlineIndex}`} math={inlinePart} />
+            );
+          })}
+        </span>
+      );
+    } else {
+      // Odd indices are block math
+      return <BlockMath key={`block-${index}`} math={part} />;
+    }
+  });
+};
+
+// Custom scrollbar and animation styles
+const ScrollbarStyles = () => (
+   <style jsx="true">{`
+    .styled-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .styled-scrollbar::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+    .styled-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(100, 100, 255, 0.4);
+      border-radius: 4px;
+    }
+    .styled-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 100, 255, 0.6);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.5s ease-out;
+    }
+  `}</style>
+);
 
 const Chat = () => {
    const textareaRef = useRef(null);
@@ -146,7 +216,7 @@ const Chat = () => {
                });
 
                // If the video is done, stop polling and update UI
-               if (status === "done" && video_url) {
+               if (status === "finished" && video_url) {
                   clearInterval(pollingRef.current);
                   pollingRef.current = null;
                   setVideoStatus(prev => ({
@@ -208,7 +278,8 @@ const Chat = () => {
          // Add the AI response to messages
          const aiMessage = {
             role: 'assistant',
-            content: response.data.llmResponse
+            content: response.data.llmResponse,
+            jobId: response.data.jobId // Store jobId with the message
          };
 
          const updatedMessages = [initialMessage, aiMessage];
@@ -225,7 +296,6 @@ const Chat = () => {
          }
       } catch (error) {
          console.error('Error processing initial prompt:', error);
-         // Optional: Add error state handling here
          setIsSubmitting(false);
       }
    };
@@ -277,14 +347,15 @@ const Chat = () => {
          const chatId = queryParams.get('id');
 
          // Send the accumulated messages to the backend
-         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/generate`, {
+         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/generate`, {
             messages: updatedMessages
          });
 
          // Add the response to messages
          const aiMessage = {
             role: 'assistant',
-            content: response.data.llmResponse
+            content: response.data.llmResponse,
+            jobId: response.data.jobId // Store jobId with the message
          };
 
          const newMessages = [...updatedMessages, aiMessage];
@@ -340,109 +411,191 @@ const Chat = () => {
       }
    }, [messages]);
 
-   return (
-      <div className="h-screen w-full bg-[#0F0F10] text-white grid grid-cols-1 md:grid-cols-[30%_70%] font-geist overflow-hidden">
-         {/* Left: Chat column - added max-w-full and overflow-x-hidden */}
-         <div className="flex flex-col justify-between px-4 py-6 border-r border-[#1E1E20] max-w-full overflow-x-hidden">
-            <div className="flex-1 overflow-y-auto overflow-x-hidden mb-4">
-               {messages.map((message, index) => (
-                  <div
-                     key={index}
-                     className={`mb-4 p-3 rounded-lg break-words text-white text-sm`}
-                  >
-                     <div className="font-bold mb-1">
-                        {message.role === 'user' ? 'You' : 'Manimorph '}
+   // Render a message with breakdown box if applicable
+   const renderMessage = (message, index) => {
+      if (message.role === 'user') {
+         return (
+            <div
+               key={index}
+               className="mb-4 p-3 rounded-lg break-words text-white text-sm"
+            >
+               <div className="font-bold mb-1">You</div>
+               <div className="whitespace-pre-wrap overflow-wrap-anywhere">
+                  {renderWithLatex(message.content)}
+               </div>
+            </div>
+         );
+      }
+
+      // For assistant messages, check if there's a breakdown section
+      const parts = message.content.split(/```([\s\S]*?)```/);
+
+      if (parts.length >= 3) {
+         // Extract the explanation and breakdown
+         const explanation = parts[0].trim();
+         const breakdown = parts[1].trim();
+
+         return (
+            <div
+               key={index}
+               className="mb-4 p-3 rounded-lg break-words text-white text-sm"
+            >
+               <div className="font-bold mb-2 flex items-center">
+                  Manimorph
+               </div>
+
+               {/* Main explanation */}
+               <div className="mb-4 leading-relaxed">
+               {renderWithLatex(explanation)}
+               </div>
+
+               {/* Animated Breakdown Box */}
+               <div className="bg-[#121214] border border-[#2A2A2C] rounded-lg p-4 shadow-lg animate-fadeIn">
+                  <h3 className="text-sm font-bold mb-2 text-white flex items-center">
+                     Animation Steps
+                  </h3>
+
+                  {/* Scrollable steps area with gradient fade at bottom */}
+                  <div className="relative">
+                     <div className="max-h-[180px] overflow-y-auto pr-2 styled-scrollbar">
+                        <ol className="space-y-2 ml-1">
+                           {breakdown.split('\n')
+                              .filter(line => line.trim() && !line.trim().startsWith('#'))
+                              .map((step, i) => (
+                                 <li key={i} className="flex items-start group pb-1">
+                                    <div className="flex-shrink-0 h-5 w-5 rounded-full bg-gray-200 flex items-center justify-center mr-2 mt-0.5 group-hover:bg-white transition-colors text-black">
+                                       <span className="text-xs font-medium">{i + 1}</span>
+                                    </div>
+                                    <span className="text-[#E0E0E0] group-hover:text-white transition-colors">
+                                       {renderWithLatex(step.replace(/^\d+\.\s*/, ''))}
+                                    </span>
+                                 </li>
+                              ))
+                           }
+                        </ol>
                      </div>
-                     <div className="whitespace-pre-wrap overflow-wrap-anywhere">{message.content}</div>
+                     <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#121214] to-transparent pointer-events-none"></div>
                   </div>
-               ))}
-               {isSubmitting && !currentJobId && (
-                  <div className="mb-4 p-3 rounded-lg text-white">
-                     <div className="font-bold mb-1">Manimorph </div>
-                     <div className="animate-pulse">Generating response...</div>
+               </div>
+            </div>
+         );
+      }
+
+      // No breakdown, just render the regular message
+      return (
+         <div
+            key={index}
+            className="mb-4 p-3 rounded-lg break-words text-white text-sm"
+         >
+            <div className="font-bold mb-1">
+               Manimorph
+            </div>
+            <div className="whitespace-pre-wrap overflow-wrap-anywhere">{message.content}</div>
+         </div>
+      );
+   };
+
+   return (
+      <>
+         <ScrollbarStyles />
+         <div className="h-screen w-full bg-[#0F0F10] text-white grid grid-cols-1 md:grid-cols-[30%_70%] font-geist overflow-hidden">
+            {/* Left: Chat column */}
+            <div className="flex flex-col justify-between px-4 py-6 border-r border-[#1E1E20] max-w-full overflow-x-hidden">
+               <div className="flex-1 overflow-y-auto overflow-x-hidden mb-4 styled-scrollbar">
+                  {messages.map((message, index) => renderMessage(message, index))}
+
+                  {isSubmitting && !currentJobId && (
+                     <div className="mb-4 p-3 rounded-lg text-white">
+                        <div className="font-bold mb-1">
+                           Manimorph
+                        </div>
+                        <div className="animate-pulse flex items-center">
+                           <span className="ml-2">Generating response...</span>
+                        </div>
+                     </div>
+                  )}
+               </div>
+
+               <div className="w-full">
+                  <form onSubmit={handleSubmit} className="w-full">
+                     <div className="relative">
+                        <Textarea
+                           ref={textareaRef}
+                           className="resize-none w-full pr-16 overflow-auto max-h-72 bg-[#1A1A1C] px-4 py-3 rounded-md"
+                           placeholder={currentJobId ? "Please wait until video generation is complete..." : "Ask Manimorph ..."}
+                           value={input}
+                           onChange={handleInputChange}
+                           onKeyDown={handleKeyDown}
+                           disabled={isSubmitting || !!currentJobId}
+                        />
+                        <button
+                           type="submit"
+                           disabled={isSubmitting || !input.trim() || !!currentJobId}
+                           className="absolute right-3 bottom-3 p-2 rounded-md disabled:bg-[#1F1F22] bg-white hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                           aria-label="Submit"
+                        >
+                           <AnimationIcon className={`${isSubmitting || !input.trim() || !!currentJobId
+                              ? 'text-white opacity-45'
+                              : 'text-black'
+                              }`} />
+                        </button>
+                     </div>
+                     {currentJobId && (
+                        <div className="mt-2 text-xs text-[#AAAAAA]">
+                           Input is disabled during video generation
+                        </div>
+                     )}
+                  </form>
+               </div>
+            </div>
+
+            {/* Right: Video/waiting column */}
+            <div className="flex flex-col items-center justify-center px-6 h-full">
+               {videoStatus.loading ? (
+                  <div className="w-full max-w-2xl">
+                     <div className="animate-pulse text-xl mb-6">Generating visualization...</div>
+
+                     {/* Status indicator */}
+                     <div className="mb-4">
+                        <div className="flex items-center mb-2">
+                           <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse mr-2"></div>
+                           <div className="font-medium">Current status: {videoStatus.status || "initializing"}</div>
+                        </div>
+                     </div>
+
+                     {/* Log panel */}
+                     <div className="bg-[#121214] border border-[#2A2A2C] rounded-lg p-4 h-[300px] overflow-y-auto styled-scrollbar">
+                        <h3 className="text-sm font-medium mb-2 text-gray-300">Generation logs:</h3>
+                        <div className="space-y-1 text-xs text-gray-400 font-mono">
+                           {videoStatus.logs.map((log, i) => (
+                              <div key={i} className="border-l-2 border-[#2A2A2C] pl-2">{log}</div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
+               ) : videoStatus.url ? (
+                  <div className="w-full flex flex-col items-center">
+                     <video
+                        src={videoStatus.url}
+                        className="w-full max-h-[80vh] rounded-lg"
+                        controls
+                        autoPlay
+                     />
+                     <div className="mt-2 text-xs text-[#AAAAAA]">
+                        Video generation complete!
+                     </div>
+                  </div>
+               ) : (
+                  <div className="text-center opacity-70">
+                     <p>Your visualization will appear here</p>
+                     <p className="text-xs mt-2 text-[#AAAAAA]">
+                        Ask Manimorph to create an animation for you
+                     </p>
                   </div>
                )}
             </div>
-
-            <div className="w-full">
-               <form onSubmit={handleSubmit} className="w-full">
-                  <div className="relative">
-                     <Textarea
-                        ref={textareaRef}
-                        className="resize-none w-full pr-16 overflow-auto max-h-72 bg-[#1A1A1C] px-4 py-3 rounded-md"
-                        placeholder={currentJobId ? "Please wait until video generation is complete..." : "Ask Manimorph ..."}
-                        value={input}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyDown}
-                        disabled={isSubmitting || !!currentJobId}
-                     />
-                     <button
-                        type="submit"
-                        disabled={isSubmitting || !input.trim() || !!currentJobId}
-                        className="absolute right-3 bottom-3 p-2 rounded-md disabled:bg-[#1F1F22] bg-white hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        aria-label="Submit"
-                     >
-                        <AnimationIcon className={`${isSubmitting || !input.trim() || !!currentJobId
-                              ? 'text-white opacity-45'
-                              : 'text-black'
-                           }`} />
-                     </button>
-                  </div>
-                  {currentJobId && (
-                     <div className="mt-2 text-xs text-[#AAAAAA]">
-                        Input is disabled during video generation
-                     </div>
-                  )}
-               </form>
-            </div>
          </div>
-
-         {/* Right: Video/waiting column */}
-         <div className="flex flex-col items-center justify-center px-6 h-full">
-            {videoStatus.loading ? (
-               <div className="w-full max-w-2xl">
-                  <div className="animate-pulse text-xl mb-6">Generating visualization...</div>
-
-                  {/* Status indicator */}
-                  <div className="mb-4">
-                     <div className="flex items-center mb-2">
-                        <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse mr-2"></div>
-                        <div className="font-medium">Current status: {videoStatus.status || "initializing"}</div>
-                     </div>
-                  </div>
-
-                  {/* Log panel */}
-                  <div className="bg-[#121214] border border-[#2A2A2C] rounded-lg p-4 h-[300px] overflow-y-auto">
-                     <h3 className="text-sm font-medium mb-2 text-gray-300">Generation logs:</h3>
-                     <div className="space-y-1 text-xs text-gray-400 font-mono">
-                        {videoStatus.logs.map((log, i) => (
-                           <div key={i} className="border-l-2 border-[#2A2A2C] pl-2">{log}</div>
-                        ))}
-                     </div>
-                  </div>
-               </div>
-            ) : videoStatus.url ? (
-               <div className="w-full flex flex-col items-center">
-                  <video
-                     src={videoStatus.url}
-                     className="w-full max-h-[80vh] rounded-lg"
-                     controls
-                     autoPlay
-                  />
-                  <div className="mt-2 text-xs text-[#AAAAAA]">
-                     Video generation complete!
-                  </div>
-               </div>
-            ) : (
-               <div className="text-center opacity-70">
-                  <p>Your visualization will appear here</p>
-                  <p className="text-xs mt-2 text-[#AAAAAA]">
-                     Ask Manimorph to create an animation for you
-                  </p>
-               </div>
-            )}
-         </div>
-      </div>
+      </>
    );
 };
 
