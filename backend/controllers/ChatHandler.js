@@ -13,7 +13,14 @@ const handleChat = async (req, res) => {
    const { text } = await generateText({
       model: google("gemini-2.5-flash-preview-04-17"),
       messages,
-      system: ANALYZER_SYSTEM_PROMPT
+      system: ANALYZER_SYSTEM_PROMPT,
+      providerOptions: {
+         google: {
+            thinkingConfig: {
+               thinkingBudget: 24576,
+            },
+         }
+      }
    })
 
    let jobId = null;

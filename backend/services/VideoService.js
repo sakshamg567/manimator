@@ -18,6 +18,11 @@ const startGenerationFlow = (jobId, prompt, AnimationStepBreakdown) => {
             const response = await ai.models.generateContent({
                model: "gemini-2.5-flash-preview-04-17",
                config: {
+                  thinkingConfig: {
+                     thinkingBudget: 24576,
+                     includeThoughts: false,
+                  },
+                  temperature: 0.7,
                   responseMimeType: 'text/plain',
                   systemInstruction: CODER_SYSTEM_PROMPT,
                },
